@@ -1,0 +1,21 @@
+# Written by basstler's /setup-personal-notes (python -m basstler.plan_site.publication);
+# re-run that to update it rather than editing it here.
+name: Plan site
+
+# Started by each registered repository's notes branch on every push to it, and by hand.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    uses: KAOS-repositories/basstler/.github/workflows/plan-site-build.yml@release
+    with:
+      basstler_branch_or_tag: release
+      registry: davidprueser/cognitive_robot_abstract_machine
+    secrets:
+      read_token: ${{ secrets.PLAN_SITE_READ_TOKEN }}
